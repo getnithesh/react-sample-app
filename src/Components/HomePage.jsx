@@ -6,8 +6,10 @@ class HomePage extends React.Component {
     }
 
     render(){
+        debugger;
         return(<div>
-            <span>Welcome to home page</span> <br /><br />
+            <span>Welcome to home page</span> &nbsp;&nbsp;
+            <span style = {{color: "green"}}>{this.props.history.location.state.userName} </span><br /><br />
             <button onClick = {this.onLogoutClick} >Logout</button>
         </div>)
     }
