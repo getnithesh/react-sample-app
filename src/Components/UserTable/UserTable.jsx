@@ -7,7 +7,7 @@ const UserTable = (props) => {
                 <UserHeader />
                 {
                     props.userData.map(user => {
-                        return < UserData user={user} />
+                        return <UserData userProfile={user} />
                     })
                 }
             </table>
@@ -26,10 +26,10 @@ const UserHeader = () => {
 
 const UserData = (props) => {
     return (<tr>
-        <td>{props.user.firstName}</td>
-        <td>{props.user.lastName}</td>
-        <td>{props.user.role}</td>
-        <td><input type="checkbox" checked={props.user.isActive} /></td>
+        <td>{props.userProfile.firstName}</td>
+        <td>{props.userProfile.lastName}</td>
+        <td>{props.userProfile.role}</td>
+        <td><input type="checkbox" checked={props.userProfile.isActive} /></td>
     </tr>)
 }
 
