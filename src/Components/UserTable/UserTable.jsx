@@ -7,7 +7,9 @@ const UserTable = (props) => {
                 <UserHeader />
                 {
                     props.userData.map(user => {
-                        return <UserData userProfile={user} />
+                        return <UserData userProfile={user} onDeleteUser = {(_id)=>{
+                            props.deleteClick(_id)
+                        }}/>
                     })
                 }
             </table>
@@ -30,6 +32,7 @@ const UserData = (props) => {
         <td>{props.userProfile.lastName}</td>
         <td>{props.userProfile.role}</td>
         <td><input type="checkbox" checked={props.userProfile.isActive} /></td>
+        <td><button onClick = {()=>{props.onDeleteUser(props.userProfile._id)}}>Delete</button></td>
     </tr>)
 }
 

@@ -1,8 +1,13 @@
 import { getUsersApi } from "../api/api"
 
 export const getUsersAction = (users) => ({
-  type: 'GET_USERS',
+  type: 'GET_ALL_USERS',
   users
+})
+
+export const deleteUsersAction = (deletedId) => ({
+  type: 'DELETE_USERS',
+  deletedId
 })
 
 export const getAllUsers = () => dispatch => {
@@ -11,4 +16,8 @@ export const getAllUsers = () => dispatch => {
   }).catch(err=>{
     console.log("Error :  "+ err)
   })
+}
+
+export const deleteUser = (deletedId) => dispatch => {
+  dispatch(deleteUsersAction(deletedId))
 }

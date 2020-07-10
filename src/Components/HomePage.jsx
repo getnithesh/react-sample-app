@@ -1,6 +1,6 @@
 import React from 'react';
 import UserTable from './UserTable/UserTable';
-import {getAllUsers} from '../actions/index';
+import {getAllUsers, deleteUser} from '../actions/usersaction';
 import { connect } from 'react-redux';
 
 class HomePage extends React.Component {
@@ -10,13 +10,20 @@ class HomePage extends React.Component {
 
     render(){
         debugger;
-        console.log(this.props.state.fetchUsers)
+        let {fetchUsers} = this.props.state
         return(<div>
             <span>Welcome to home page</span> &nbsp;&nbsp;
             <span style = {{color: "green"}}>{this.props.history.location.state.userName} </span><br /><br />
             <button onClick = {this.onLogoutClick} >{'Logout'}</button>
-            <UserTable userData = {this.props.state.fetchUsers}/>
+            {(fetchUsers && fetchUsers[0]) ? <UserTable userData = {fetchUsers[0]} deleteClick = {this.onDelete}/> : null}
+        <br />
+        Deleted ID :<span>{(fetchUsers && fetchUsers[0])? fetchUsers[1] : ''}</span>
         </div>)
+    }
+
+    onDelete = (id) =>{
+        debugger;
+        this.props.deleteUser(id);
     }
 
     onLogoutClick = ()=>{
@@ -29,4 +36,4 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {return {state}}
-export default connect(mapStateToProps, { getAllUsers })(HomePage)
+export default connect(mapStateToProps, { getAllUsers, deleteUser })(HomePage)
